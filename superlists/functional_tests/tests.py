@@ -1,6 +1,7 @@
 from django.test import LiveServerTestCase
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
+import time
 
 
 class NewVisitorTest(LiveServerTestCase):
@@ -41,7 +42,6 @@ class NewVisitorTest(LiveServerTestCase):
         # 这个页面的待办事项清单中显示了“1: Buy peacock feathers”
         inputbox.send_keys(Keys.ENTER)
 
-        import time
         time.sleep(3)
         edith_list_url = self.browser.current_url
         self.assertRegex(edith_list_url, '/lists/.+')
@@ -87,6 +87,7 @@ class NewVisitorTest(LiveServerTestCase):
         inputbox.send_keys('Buy milk')
         inputbox.send_keys(Keys.ENTER)
 
+        time.sleep(10)
         # 弗朗西斯获得了他的唯一 URL
         francis_list_url = self.browser.current_url
         self.assertRegex(edith_list_url, '/lists/.+')
